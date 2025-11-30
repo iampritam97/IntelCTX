@@ -1,0 +1,20 @@
+name: APTIntel CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PHP Lint
+        run: |
+          sudo apt-get install php -y
+          find . -name "*.php" -exec php -l {} \;
+      - name: Read VERSION
+        run: |
+          echo "App Version: $(cat VERSION)"

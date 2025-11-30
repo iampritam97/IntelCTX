@@ -1,0 +1,10 @@
+# Server / DB / secrets (do not expose)
+.env
+*.sql
+db.php
+db_backup/
+node_modules/
+
+# Local testing folders
+logs/
+.cache/
