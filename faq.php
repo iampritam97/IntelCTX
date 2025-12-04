@@ -33,7 +33,6 @@
     </details>
 
   </div>
-
 </section>
 
 <style>
@@ -47,5 +46,6 @@
   @apply mt-2 text-xs text-slate-600;
 }
 </style>
+</main>
 
 <?php include 'partials/footer.php'; ?>

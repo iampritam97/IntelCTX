@@ -17,7 +17,7 @@
   <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
     <?php foreach($sources as $s): ?>
       <div class="bg-white dark:bg-gray-900 border border-border rounded-xl p-4 shadow-sm hover:shadow-md transition">
-        <h2 class="font-mono text-xs font-bold text-primary dark:text-gray-100"><?php echo $s[0]; ?></h2>
+        <h2 class="font-mono text-xs font-bold text-primary text-ht_blue"><?php echo $s[0]; ?></h2>
         <p class="text-[11px] text-slate-600 dark:text-gray-400 mt-1"><?php echo htmlspecialchars($s[1]); ?></p>
       </div>
     <?php endforeach; ?>

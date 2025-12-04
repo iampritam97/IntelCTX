@@ -1,0 +1,6 @@
+PDF and MD export :
+-------------------------
+<div class="mt-4 space-y-2">
+          <a href="export_pdf.php?id=<?php echo $apt['id']; ?>" class="block text-xs border border-ht_border rounded px-3 py-1 hover:bg-ht_bg">Export PDF</a>
+          <button onclick="exportProfile()" class="block w-full text-xs border border-ht_border rounded px-3 py-1 hover:bg-ht_bg">Export MD</button>
+</div>

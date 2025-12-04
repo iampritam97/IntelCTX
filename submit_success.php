@@ -4,4 +4,5 @@
   <p class="text-xs text-slate-500">Your threat intel has been emailed to the maintainer for review.</p>
   <a href="index.php" class="text-xs underline text-accent">Return to home</a>
 </section>
+</main>
 <?php include 'partials/footer.php'; ?>

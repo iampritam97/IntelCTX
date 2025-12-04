@@ -28,6 +28,32 @@ window.toggleTheme = function() {
 
 
 <head>
+<!-- Local Custom Logo Font -->
+<style>
+@font-face {
+  font-family: 'LogoFont';
+  src: url('../assets/fonts/r-Light.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+.logo-text {
+  font-family: 'LogoFont', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+</style>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+tinymce.init({
+  selector: '.richtext',
+  height: 180,
+  menubar: false,
+  plugins: 'lists link code',
+  toolbar: 'undo redo | bold italic underline | bullist numlist | link | code',
+  content_style: "body { font-size: 14px; }"
+});
+</script>
 
     <meta charset="UTF-8">
     <title>IntelCTX — Threat Intelligence for Modern Defenders</title>
@@ -35,74 +61,115 @@ window.toggleTheme = function() {
     <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        primary: "#0F172A",
-        accent: "#2563EB",
-        border: "#E2E8F0",
-        light: "#F8FAFC",
-        darkbg: "#030712",
-        darktext: "#F3F4F6"
+        ht_bg: "#0B0E11",
+        ht_bg2: "#13161A",
+        ht_text: "#E5E7EB",
+        ht_muted: "#9CA3AF",
+        ht_blue: "#3B82F6",
+        ht_blue2: "#2563FF",
+        ht_border: "#1F242C",
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        mono: ["Fira Code", "monospace"]
-      }
+        mono: ["Fira Code", "Menlo", "monospace"],
+        hacker: ["Inter", "sans-serif"],
+      },
+      backgroundImage: {
+        grid: "url('/assets/grid.svg')",
+      },
     }
   }
 }
+
+</script>
+<script>
+function bindSuggest(inputId) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+
+  let box = document.createElement('div');
+  box.className = "absolute z-50 mt-1 bg-white border border-border rounded shadow-sm w-full hidden";
+  input.parentNode.style.position = 'relative';
+  input.parentNode.appendChild(box);
+
+  input.addEventListener('input', async () => {
+    const q = input.value.trim();
+    if (!q) { box.innerHTML = ''; box.classList.add('hidden'); return; }
+
+    const res = await fetch('search_suggest.php?q=' + encodeURIComponent(q));
+    const suggestions = await res.json();
+    if (!suggestions.length) { box.innerHTML = ''; box.classList.add('hidden'); return; }
+
+    box.innerHTML = suggestions.map(s => {
+      return `<a class="block px-3 py-2 text-sm hover:bg-slate-50" href="${s.type=='apt'?'/apt.php?id='+s.id:(s.type=='mal'?'/malware_view.php?id='+s.id:'/tools_view.php?id='+s.id)}">
+        ${s.name} <span class="text-xs text-slate-400">(${s.type})</span>
+      </a>`;
+    }).join('');
+    box.classList.remove('hidden');
+  });
+
+  document.addEventListener('click', (e) => { if (!input.parentNode.contains(e.target)) box.classList.add('hidden'); });
+}
+
+// call on DOM ready for the main search input id "aptSearch"
+document.addEventListener('load', () => bindSuggest('aptSearch'));
 </script>
 
 </head>
-<body class="bg-slate-100 text-slate-900">
-<header class="bg-white border-b border-gray-200 px-6 py-4 transition dark:bg-gray-900 dark:border-gray-800">
-  <nav class="max-w-7xl mx-auto flex justify-between items-center">
+<body class="bg-ht_bg text-ht_text bg-grid bg-[length:60px_60px]">
 
-    <!-- Logo -->
-    <div class="flex items-center gap-3">
-      <!-- <img src="assets/logo.png" class="h-7 w-7 opacity-80 dark:opacity-90"> -->
-      <span class="text-xl font-bold text-primary dark:text-darktext tracking-tight">IntelCTX</span>
-    </div>
+<header class="sticky top-0 z-40">
 
-    <!-- Desktop Links -->
-    <div class="hidden md:flex gap-6 text-sm font-medium items-center">
-      <a href="index.php" class="nav-link">Encyclopedia</a>
-      <a href="malware.php" class="nav-link">Malware</a>
-      <a href="tools.php" class="nav-link">Threat Tools</a>
-      <a href="timeline.php" class="nav-link">Timeline</a>
-      <a href="hunter.php" class="nav-link">Hunt Builder</a>
-      <a href="admin/login.php" class="nav-link">Admin</a>
+  <div class="backdrop-blur-xl bg-black/30 border-b border-white/10 shadow-lg">
+    <nav class="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
 
-      <!-- ✅ THEME TOGGLE FIXED -->
-<!-- <button onclick="toggleTheme()" 
-  class="w-8 h-8 flex items-center justify-center border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-  <span class="text-sm dark:text-gray-300">🌗</span>
-</button> -->
+      <!-- LOGO -->
+      <div class="flex items-center gap-2">
+        <span class="text-ht_blue font-mono text-xl">&gt;</span>
+        <span class="logo-text text-xl tracking-wide text-white">IntelCTX</span>
+      </div>
 
-    </div>
+      <!-- SEARCH BAR (Desktop) -->
+      <div class="hidden md:flex w-1/2">
+        <form action="search.php" class="w-full relative">
+          <input id="aptSearch"
+            type="text"
+            name="q"
+            placeholder="Search APTs, Malware, Tools…"
+            class="w-full px-4 py-2 rounded-lg bg-white/5 text-ht_text 
+                   border border-white/10 placeholder-gray-400
+                   focus:border-ht_blue focus:ring-0 backdrop-blur-sm transition" />
+        </form>
+      </div>
 
-    <!-- Mobile Button -->
-    <button onclick="document.getElementById('mobile_nav').classList.toggle('hidden')" 
-      class="md:hidden border border-border dark:border-gray-700 rounded-lg px-3 py-1 dark:text-darktext">
-      ☰
-    </button>
+      <!-- RIGHT SIDE -->
+      <div class="flex items-center gap-4">
 
-  </nav>
+        <!-- THEME TOGGLE -->
+        <button onclick="toggleTheme()" 
+          class="p-2 rounded-lg bg-white/5 border border-white/10 
+                 hover:bg-white/10 transition text-gray-300"
+          title="Toggle Theme">
+          🌓
+        </button>
 
-  <!-- Mobile Links -->
-  <div id="mobile_nav" class="hidden max-w-7xl mx-auto mt-4 grid gap-3 text-xs md:hidden dark:text-darktext">
-      <a href="index.php" class="mobile-link">APT Encyclopedia</a>
-      <a href="malware.php" class="mobile-link">Malware</a>
-      <a href="tools.php" class="mobile-link">Threat Tools</a>
-      <a href="timeline.php" class="mobile-link">Timeline</a>
-      <a href="hunter.php" class="mobile-link">Hunt Builder</a>
-      <a href="admin/login.php" class="mobile-link">Admin</a>
+        <!-- SIGN IN -->
+        <a href="admin/login.php"
+          class="px-4 py-1 rounded-lg text-sm bg-white/5 border border-white/10 
+                 hover:bg-ht_blue hover:border-ht_blue hover:text-white transition">
+          ⌁ Sign In
+        </a>
+      </div>
 
-      <!-- ✅ Mobile Theme Toggle -->
-      <button onclick="toggleTheme()" class="mobile-link text-left">🌗 Toggle Theme</button>
+    </nav>
   </div>
+
 </header>
+
+
 
 <style>
 .nav-link {
@@ -116,6 +183,26 @@ tailwind.config = {
 .mobile-link {
   @apply p-2 border border-border rounded-lg dark:border-gray-700 hover:bg-slate-50 dark:hover:bg-gray-800 transition;
 }
+
+/* Logo refinement */
+.logo-text {
+  font-family: "LogoFont", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Search dropdown suggestions (glass-style) */
+#aptSearch + div {
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+}
+
+#aptSearch + div a:hover {
+  background: rgba(255,255,255,0.06) !important;
+}
+
 </style>
 
 

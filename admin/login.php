@@ -14,24 +14,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 include __DIR__ . '/../partials/header.php';
 ?>
-<section class="max-w-sm mx-auto bg-white border border-slate-200 rounded-lg p-4 text-sm">
-    <h1 class="text-lg font-semibold mb-3">Admin Login</h1>
+
+<section class="min-h-[70vh] flex items-center justify-center px-4">
+
+  <div class="w-full max-w-sm bg-ht_bg2 border border-ht_border rounded-xl shadow-lg p-8">
+
+    <h1 class="text-2xl font-extrabold text-ht_blue">Admin Portal Login</h1>
+    <p class="text-xs text-ht_muted mb-6">Restricted access — authorized users only.</p>
+
     <?php if ($error): ?>
-        <p class="text-xs text-red-600 mb-2"><?php echo htmlspecialchars($error); ?></p>
+      <div class="bg-red-600/20 border border-red-600 text-red-300 text-xs rounded-md p-2 mb-4">
+        <?= htmlspecialchars($error); ?>
+      </div>
     <?php endif; ?>
-    <form method="post" class="space-y-3">
-        <div>
-            <label class="block text-xs mb-1">Username</label>
-            <input name="username" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm">
-        </div>
-        <div>
-            <label class="block text-xs mb-1">Password</label>
-            <input type="password" name="password"
-                   class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm">
-        </div>
-        <button class="border border-slate-400 rounded px-3 py-1.5 text-sm" type="submit">
-            Login
-        </button>
+
+    <form method="post" class="space-y-5">
+
+      <div>
+        <label class="block text-xs text-ht_muted mb-1">Username</label>
+        <input name="username"
+               class="w-full px-3 py-2 text-sm rounded-lg bg-ht_bg border border-ht_border text-ht_text focus:outline-none focus:ring-1 focus:ring-ht_blue"
+               autocomplete="username"
+               autofocus>
+      </div>
+
+      <div>
+        <label class="block text-xs text-ht_muted mb-1">Password</label>
+        <input type="password" name="password"
+               class="w-full px-3 py-2 text-sm rounded-lg bg-ht_bg border border-ht_border text-ht_text focus:outline-none focus:ring-1 focus:ring-ht_blue"
+               autocomplete="current-password">
+      </div>
+
+      <button type="submit"
+        class="w-full bg-ht_blue text-white py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-600 transition">
+        Sign In
+      </button>
+
     </form>
+
+    <p class="text-[10px] text-ht_muted mt-6 text-center">IntelCTX Admin Interface v1.0</p>
+
+  </div>
+
 </section>
+    </main>
 <?php include __DIR__ . '/../partials/footer.php'; ?>

@@ -6,69 +6,90 @@
 .input-box {
   @apply border border-border bg-slate-50 dark:bg-gray-800 rounded-md px-3 py-2 font-mono text-xs focus:ring-1 ring-accent transition;
 }
+/* Slight glow on timeline hover */
+.group:hover .ring-ht_blue\/20 {
+    box-shadow: 0 0 18px rgba(59,130,246,0.35);
+}
 
 </style>
-<section class="max-w-5xl mx-auto px-6 py-12 space-y-8 text-primary">
+<section class="max-w-5xl mx-auto px-6 py-12 space-y-12">
 
-  <!-- Page Header -->
-  <div>
-    <h1 class="text-3xl font-extrabold tracking-tight text-accent">Changelog</h1>
-    <p class="text-xs text-slate-500 mt-1">Version history and platform enhancement timeline</p>
-  </div>
-
-  <!-- Timeline Container -->
-  <div class="border-l-2 border-slate-200 dark:border-gray-800 pl-5 space-y-10">
-
-    <?php 
-    $logs = [
-      ["MVP 1.0", "2025-11-30", [
-        "Initial release of APT encyclopedia module",
-        "Admin panel with secure login and CRUD",
-        "IOC copy utilities & profile export (TXT/MD)",
-        "Malware master list & threat tools list",
-        "Audit logging for admin actions"
-      ]],
-      ["MVP 1.1", "2025-11-30", [
-        "Added MITRE ATT&CK Group ID support",
-        "Introduced Malware Family detail pages",
-        "Added TTP click-through explorer UI",
-        "Threat Hunt query library implemented",
-        "Governance & compliance pages introduced",
-        "Changelog UI added"
-      ]],
-      ["MVP 1.2 (Current)", "2025-11-30", [
-        "Query Builder extended for multiple IOC types",
-        "Dark mode root support (no toggle ✅ at core layer)",
-        "UI polished for enterprise readability",
-        "Footer version alignment updated"
-      ]]
-    ];
-    ?>
-
-    <?php foreach($logs as $l): ?>
-    <div class="relative">
-      <!-- Version Circle -->
-      <div class="absolute -left-[30px] bg-white border border-slate-300 rounded-full w-3 h-3 mt-1.5"></div>
-
-      <!-- Version Card -->
-      <div class="bg-white dark:bg-gray-900 border border-border dark:border-gray-800 rounded-xl p-5 shadow-sm space-y-3">
-        <div class="flex justify-between items-start">
-          <h2 class="text-sm font-bold uppercase tracking-tight text-primary"><?php echo $l[0]; ?></h2>
-          <time class="text-[10px] text-slate-400 dark:text-gray-600 font-mono"><?php echo date('d M Y', strtotime($l[1])); ?></time>
-        </div>
-
-        <!-- Changes List -->
-        <ul class="list-disc list-inside text-xs text-slate-600 dark:text-gray-400 space-y-1">
-          <?php foreach($l[2] as $line): ?>
-            <li><?php echo htmlspecialchars($line); ?></li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
+    <!-- Header -->
+    <div>
+        <h1 class="text-4xl font-extrabold tracking-tight text-ht_blue">Changelog</h1>
+        <p class="text-xs text-ht_muted mt-1">Version releases, improvements & update history</p>
     </div>
-    <?php endforeach; ?>
 
-  </div>
+    <!-- TIMELINE WRAPPER -->
+    <div class="relative border-l border-ht_border/40 pl-8 space-y-12">
+
+        <?php 
+        $logs = [
+            ["IntelCTX 1.0 — MVP Launch", "2025-11-30", [
+                "Introduced APT Encyclopedia module with full profile structure",
+                "Added secure Admin Panel with CRUD permissions",
+                "IOC extraction and copy utilities added",
+                "Introduced Malwarepedia & Threat Tool Registry",
+                "Launched platform-wide audit logging engine"
+            ]],
+            ["IntelCTX 1.1 — Research Expansion", "2025-12-01", [
+                "Added MITRE ATT&CK group mapping & enrichments",
+                "New Malware Family detail view with capability matrices",
+                "TTP Explorer with interaction & MITRE detection alignment",
+                "Threat Hunt Query Library introduced",
+                "Compliance & governance documentation pages added",
+                "Initial Changelog panel added"
+            ]],
+            ["IntelCTX 1.2 — Enterprise UI Pass", "2025-12-04", [
+                "Global dark theme upgrade with improved component contrast",
+                "Hunt Query Builder with multi-IOC parsing & MITRE guidance",
+                "APT Profile page redesigned with lifecycle graph",
+                "Added PDF export engine using DomPDF",
+                "Footer versioning, header redesign, and UX smoothing"
+            ]],
+            ["IntelCTX 1.3 — Current Development", "2025-12-05", [
+                "Added unified search experience across APT, Malware, and Tools",
+                "Glassmorphism UI applied to core analytic panels",
+                "Live threat ticker prepared for integration",
+                "Improved spacing, radii, and enterprise typography",
+                "Stability improvements & backend cleanup"
+            ]],
+        ];
+        ?>
+
+        <?php foreach($logs as $l): ?>
+        <div class="relative group">
+
+            <!-- Dot -->
+            <div class="absolute -left-3 w-3 h-3 rounded-full bg-ht_blue
+                        ring-4 ring-ht_blue/20 shadow-md"></div>
+
+            <!-- Card -->
+            <div class="backdrop-blur-xl bg-ht_bg2/60 border border-ht_border 
+                        rounded-xl p-6 shadow transition-all group-hover:border-ht_blue/40">
+
+                <div class="flex justify-between items-start">
+                    <h2 class="text-sm font-bold uppercase tracking-tight text-ht_blue">
+                        <?= $l[0] ?>
+                    </h2>
+
+                    <time class="text-[11px] font-mono text-ht_muted">
+                        <?= date("d M Y", strtotime($l[1])) ?>
+                    </time>
+                </div>
+
+                <ul class="list-disc list-inside text-xs text-ht_muted mt-3 space-y-1">
+                    <?php foreach($l[2] as $line): ?>
+                        <li><?= htmlspecialchars($line) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+        <?php endforeach; ?>
+
+    </div>
 
 </section>
+                    </main>
 
 <?php include 'partials/footer.php'; ?>

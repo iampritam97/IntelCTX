@@ -1,4 +1,4 @@
-name: APTIntel CI Pipeline
+name: IntelCTX CI Pipeline
 
 on:
   push:

@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../auth.php';
+require_once __DIR__ . '/../functions/knowledge_score.php';
+
 require_login();
 $pdo = get_db();
 
@@ -21,7 +23,7 @@ if ($editing) {
         'malware_families' => '', 'tools' => '', 'notable_attacks' => '',
         'ioc_domains' => '', 'ioc_ips' => '', 'ioc_hashes' => '', 'ioc_emails' => '',
         'ioc_registry_paths' => '', 'ioc_yara' => '', 'detection_opportunities' => '',
-        'references_section' => '', 'risk_score' => 5, 'confidence_level' => 'Medium'
+        'references_section' => '', 'risk_score' => 5, 'confidence_level' => 'Medium', 'knowledge_score' => 0
     ];
 }
 
@@ -31,14 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'targeted_industries','targeted_countries','ttp_summary','malware_families',
         'tools','notable_attacks','ioc_domains','ioc_ips','ioc_hashes','ioc_emails',
         'ioc_registry_paths','ioc_yara','detection_opportunities','references_section',
-        'risk_score','confidence_level'
+        'risk_score','confidence_level', 'knowledge_score'
     ];
+    $data['risk_score'] = (int)$data['risk_score'];
+    // Compute IntelCTX Knowledge Score
+    $data['knowledge_score'] = calculate_knowledge_score($data);
+
     $data = [];
     foreach ($fields as $f) {
         $data[$f] = $_POST[$f] ?? null;
     }
     $data['risk_score'] = (int)$data['risk_score'];
-
+    
     if ($editing) {
         $sql = "UPDATE apt_groups SET
           name=:name, aliases=:aliases, country=:country, mitre_group_id=:mitre_group_id, sponsor=:sponsor,
@@ -49,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           ioc_hashes=:ioc_hashes, ioc_emails=:ioc_emails, ioc_registry_paths=:ioc_registry_paths,
           ioc_yara=:ioc_yara, detection_opportunities=:detection_opportunities,
           references_section=:references_section, risk_score=:risk_score,
-          confidence_level=:confidence_level
+          confidence_level=:confidence_level, knowledge_score=:knowledge_score
           WHERE id=:id";
         $stmt = $pdo->prepare($sql);
         $data['id'] = $id;
@@ -60,12 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         (name, aliases, country, mitre_group_id, sponsor, active_from, active_to, motivation,
         targeted_industries, targeted_countries, ttp_summary, malware_families, tools,
         notable_attacks, ioc_domains, ioc_ips, ioc_hashes, ioc_emails, ioc_registry_paths,
-        ioc_yara, detection_opportunities, references_section, risk_score, confidence_level)
+        ioc_yara, detection_opportunities, references_section, risk_score, confidence_level, knowledge_score)
         VALUES
         (:name,:aliases,:country, :mitre_group_id, :sponsor,:active_from,:active_to,:motivation,
         :targeted_industries,:targeted_countries,:ttp_summary,:malware_families,:tools,
         :notable_attacks,:ioc_domains,:ioc_ips,:ioc_hashes,:ioc_emails,:ioc_registry_paths,
-        :ioc_yara,:detection_opportunities,:references_section,:risk_score,:confidence_level)";
+        :ioc_yara,:detection_opportunities,:references_section,:risk_score,:confidence_level,:knowledge_score)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute($data);
         $id = $pdo->lastInsertId();

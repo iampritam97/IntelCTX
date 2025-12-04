@@ -4,7 +4,7 @@
 db.php
 db_backup/
 node_modules/
-
+config.php
 # Local testing folders
 logs/
 .cache/
