@@ -8,7 +8,7 @@
         <span class="text-ht_blue font-mono text-xl">></span>
         <span class="text-white font-semibold text-lg">IntelCTX</span>
         <span class="text-[10px] px-2 py-1 bg-white/5 border border-white/10 text-gray-300 rounded-md">
-        v1.3.0
+        v1.4.0
       </span>
       </div>
 

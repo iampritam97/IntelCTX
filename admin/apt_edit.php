@@ -88,174 +88,204 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 include __DIR__ . '/../partials/header.php';
 ?>
-<section class="space-y-4 text-sm">
-    <h1 class="text-lg font-semibold">
-        <?php echo $editing ? 'Edit APT Group' : 'New APT Group'; ?>
-    </h1>
-    <form method="post" class="bg-white border border-slate-200 rounded-lg p-4 grid md:grid-cols-2 gap-4 text-xs">
-        <div class="space-y-3">
-            <div>
-                <label class="block mb-1">Name</label>
-                <input name="name" required class="w-full border border-slate-300 rounded px-2 py-1.5"
-                       value="<?php echo htmlspecialchars($apt['name']); ?>">
-            </div>
-            
-            <div>
-                <label class="block mb-1">Aliases (comma-separated)</label>
-                <input name="aliases" class="w-full border border-slate-300 rounded px-2 py-1.5"
-                       value="<?php echo htmlspecialchars($apt['aliases']); ?>">
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-                <div>
-                    <label class="block mb-1">Country</label>
-                    <input name="country" class="w-full border border-slate-300 rounded px-2 py-1.5"
-                           value="<?php echo htmlspecialchars($apt['country']); ?>">
-                </div>
-                    <!-- MITRE Group ID -->
-    <div class="space-y-2">
-      <label class="block uppercase text-slate-400 text-[11px] font-bold">MITRE ATT&CK Group ID</label>
-      <input name="mitre_group_id" placeholder="G0018 admin@338"
-        class="w-full border border-border rounded-md px-3 py-2 bg-light font-mono"
-        value="<?php echo htmlspecialchars($apt['mitre_group_id']); ?>">
-      <p class="text-[10px] text-slate-400">Official Group ID + optional internal tag</p>
+<section class="space-y-6 text-sm">
+
+  <h1 class="text-xl font-bold text-ht_blue">
+    <?= $editing ? 'Edit APT Group' : 'New APT Group'; ?>
+  </h1>
+
+  <form method="post" class="grid gap-6">
+
+    <!-- =======================
+         SECTION: IDENTITY
+    ======================== -->
+    <div class="bg-ht_bg2 border border-ht_border rounded-xl p-6 space-y-5">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-ht_muted">Identity</h2>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-ht_muted mb-1 text-xs font-semibold">Name</label>
+          <input name="name" required
+            class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"
+            value="<?= htmlspecialchars($apt['name']); ?>">
+        </div>
+
+        <div>
+          <label class="block text-ht_muted mb-1 text-xs font-semibold">Aliases</label>
+          <input name="aliases"
+            class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"
+            value="<?= htmlspecialchars($apt['aliases']); ?>">
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-ht_muted mb-1 text-xs font-semibold">Country</label>
+          <input name="country"
+            class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"
+            value="<?= htmlspecialchars($apt['country']); ?>">
+        </div>
+
+        <div>
+          <label class="block text-ht_muted mb-1 text-xs font-semibold">MITRE ATT&CK Group ID</label>
+          <input name="mitre_group_id"
+            class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 font-mono text-ht_text"
+            placeholder="G0018"
+            value="<?= htmlspecialchars($apt['mitre_group_id']); ?>">
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-ht_muted mb-1 text-xs font-semibold">Sponsor</label>
+        <input name="sponsor"
+          class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"
+          value="<?= htmlspecialchars($apt['sponsor']); ?>">
+      </div>
     </div>
-                <div>
-                    <label class="block mb-1">Sponsor</label>
-                    <input name="sponsor" class="w-full border border-slate-300 rounded px-2 py-1.5"
-                           value="<?php echo htmlspecialchars($apt['sponsor']); ?>">
-                </div>
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-                <div>
-                    <label class="block mb-1">Active from (year)</label>
-                    <input name="active_from" class="w-full border border-slate-300 rounded px-2 py-1.5"
-                           value="<?php echo htmlspecialchars($apt['active_from']); ?>">
-                </div>
-                <div>
-                    <label class="block mb-1">Active to (year or empty)</label>
-                    <input name="active_to" class="w-full border border-slate-300 rounded px-2 py-1.5"
-                           value="<?php echo htmlspecialchars($apt['active_to']); ?>">
-                </div>
-            </div>
-            <div>
-                <label class="block mb-1">Motivation</label>
-                <input name="motivation" placeholder="Espionage, Sabotage, Cybercrime..."
-                       class="w-full border border-slate-300 rounded px-2 py-1.5"
-                       value="<?php echo htmlspecialchars($apt['motivation']); ?>">
-            </div>
-            <div>
-                <label class="block mb-1">Targeted industries</label>
-                <textarea name="targeted_industries" rows="3"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['targeted_industries']); ?></textarea>
-            </div>
-            <div>
-                <label class="block mb-1">Targeted countries</label>
-                <textarea name="targeted_countries" rows="3"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['targeted_countries']); ?></textarea>
-            </div>
-            <div>
-                <label class="block mb-1">TTP summary (MITRE ATT&CK, phases)</label>
-                <textarea name="ttp_summary" rows="5"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
+
+    <!-- =======================
+         SECTION: TIMELINE
+    ======================== -->
+    <div class="bg-ht_bg2 border border-ht_border rounded-xl p-6 space-y-4">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-ht_muted">Activity Timeline</h2>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-ht_muted mb-1 text-xs font-semibold">Active From</label>
+          <input name="active_from"
+            class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"
+            value="<?= htmlspecialchars($apt['active_from']); ?>">
+        </div>
+
+        <div>
+          <label class="block text-ht_muted mb-1 text-xs font-semibold">Active To</label>
+          <input name="active_to"
+            class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"
+            value="<?= htmlspecialchars($apt['active_to']); ?>">
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-ht_muted mb-1 text-xs font-semibold">Motivation</label>
+        <input name="motivation"
+          class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"
+          value="<?= htmlspecialchars($apt['motivation']); ?>">
+      </div>
+
+      <div>
+        <label class="block text-ht_muted mb-1 text-xs font-semibold">Targeted Industries</label>
+        <textarea name="targeted_industries" rows="3"
+          class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['targeted_industries']); ?></textarea>
+      </div>
+
+      <div>
+        <label class="block text-ht_muted mb-1 text-xs font-semibold">Targeted Countries</label>
+        <textarea name="targeted_countries" rows="3"
+          class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['targeted_countries']); ?></textarea>
+      </div>
+    </div>
+
+    <!-- =======================
+         SECTION: CAPABILITIES
+    ======================== -->
+    <div class="bg-ht_bg2 border border-ht_border rounded-xl p-6 space-y-4">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-ht_muted">Capabilities</h2>
+
+      <label class="block text-ht_muted mb-1 text-xs font-semibold">Malware Families</label>
+      <textarea name="malware_families" rows="3"
+        class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['malware_families']); ?></textarea>
+
+      <label class="block text-ht_muted mt-3 mb-1 text-xs font-semibold">Tools</label>
+      <textarea name="tools" rows="3"
+        class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['tools']); ?></textarea>
+
+      <label class="block text-ht_muted mt-3 mb-1 text-xs font-semibold">Notable Attacks</label>
+      <textarea name="notable_attacks" rows="4"
+        class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['notable_attacks']); ?></textarea>
+
+      <label class="block text-ht_muted mt-3 mb-1 text-xs font-semibold">Detection Opportunities</label>
+      <textarea name="detection_opportunities" rows="4"
+        class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['detection_opportunities']); ?></textarea>
+
+  <label class="block text-ht_muted mt-3 mb-1 text-xs font-semibold">TTP summary (MITRE ATT&CK, phases)</label>
+                <textarea name="ttp_summary" rows="4"
+                          class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?php
                     echo htmlspecialchars($apt['ttp_summary']); ?></textarea>
             </div>
+    </div>
+
+    <!-- =======================
+         SECTION: ANALYST INPUTS
+    ======================== -->
+    <div class="bg-ht_bg2 border border-ht_border rounded-xl p-6 space-y-4">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-ht_muted">Analyst Metadata</h2>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-ht_muted mb-1 text-xs font-semibold">Risk Score</label>
+          <input name="risk_score" type="number" min="1" max="10"
+            class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"
+            value="<?= (int)$apt['risk_score']; ?>">
         </div>
 
-        <div class="space-y-3">
-            <div>
-                <label class="block mb-1">Malware families</label>
-                <textarea name="malware_families" rows="3"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['malware_families']); ?></textarea>
-            </div>
-            <div>
-                <label class="block mb-1">Tools</label>
-                <textarea name="tools" rows="3"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['tools']); ?></textarea>
-            </div>
-            <div>
-                <label class="block mb-1">Notable attacks (short case notes)</label>
-                <textarea name="notable_attacks" rows="4"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['notable_attacks']); ?></textarea>
-            </div>
-            <div>
-                <label class="block mb-1">Detection opportunities (log-based)</label>
-                <textarea name="detection_opportunities" rows="4"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['detection_opportunities']); ?></textarea>
-            </div>
-            <div>
-                <label class="block mb-1">References (links, CVEs, reports)</label>
-                <textarea name="references_section" rows="4"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['references_section']); ?></textarea>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2">
-                <div>
-                    <label class="block mb-1">Risk score (1–10)</label>
-                    <input type="number" min="1" max="10" name="risk_score"
-                           class="w-full border border-slate-300 rounded px-2 py-1.5"
-                           value="<?php echo (int)$apt['risk_score']; ?>">
-                </div>
-                <div>
-                    <label class="block mb-1">Confidence</label>
-                    <select name="confidence_level"
-                            class="w-full border border-slate-300 rounded px-2 py-1.5">
-                        <?php foreach (['Low','Medium','High'] as $c): ?>
-                            <option value="<?php echo $c; ?>"
-                                <?php if ($apt['confidence_level']===$c) echo 'selected'; ?>>
-                                <?php echo $c; ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-            </div>
-
-            <div class="border-t border-slate-200 pt-2">
-                <h2 class="text-xs font-semibold mb-1">IOCs</h2>
-                <label class="block mb-1">Domains</label>
-                <textarea name="ioc_domains" rows="2"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['ioc_domains']); ?></textarea>
-
-                <label class="block mb-1 mt-2">IPs</label>
-                <textarea name="ioc_ips" rows="2"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['ioc_ips']); ?></textarea>
-
-                <label class="block mb-1 mt-2">File hashes</label>
-                <textarea name="ioc_hashes" rows="2"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['ioc_hashes']); ?></textarea>
-
-                <label class="block mb-1 mt-2">Emails / patterns</label>
-                <textarea name="ioc_emails" rows="2"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['ioc_emails']); ?></textarea>
-
-                <label class="block mb-1 mt-2">Registry paths</label>
-                <textarea name="ioc_registry_paths" rows="2"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5"><?php
-                    echo htmlspecialchars($apt['ioc_registry_paths']); ?></textarea>
-
-                <label class="block mb-1 mt-2">YARA / YARA-like</label>
-                <textarea name="ioc_yara" rows="4"
-                          class="w-full border border-slate-300 rounded px-2 py-1.5 font-mono"><?php
-                    echo htmlspecialchars($apt['ioc_yara']); ?></textarea>
-            </div>
-
-            <div class="pt-2 flex justify-end gap-2">
-                <a href="dashboard.php" class="border border-slate-300 rounded px-3 py-1.5 text-xs">Cancel</a>
-                <button type="submit" class="border border-slate-500 rounded px-3 py-1.5 text-xs">
-                    Save
-                </button>
-            </div>
+        <div>
+          <label class="block text-ht_muted mb-1 text-xs font-semibold">Confidence Level</label>
+          <select name="confidence_level"
+            class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text">
+            <?php foreach (['Low','Medium','High'] as $c): ?>
+              <option value="<?= $c ?>" <?= $apt['confidence_level']===$c ? 'selected':'' ?>>
+                <?= $c ?>
+              </option>
+            <?php endforeach; ?>
+          </select>
         </div>
-    </form>
+      </div>
+
+      <label class="block text-ht_muted mt-3 mb-1 text-xs font-semibold">References</label>
+      <textarea name="references_section" rows="4"
+        class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['references_section']); ?></textarea>
+    </div>
+
+    <!-- =======================
+         SECTION: IOCS
+    ======================== -->
+    <div class="bg-ht_bg2 border border-ht_border rounded-xl p-6 space-y-4">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-ht_blue">Indicators of Compromise</h2>
+
+      <label class="block mb-1 text-ht_muted text-xs">Domains</label>
+      <textarea name="ioc_domains" rows="2"
+        class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['ioc_domains']); ?></textarea>
+
+      <label class="block mb-1 mt-3 text-ht_muted text-xs">IPs</label>
+      <textarea name="ioc_ips" rows="2"
+        class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['ioc_ips']); ?></textarea>
+
+      <label class="block mb-1 mt-3 text-ht_muted text-xs">File Hashes</label>
+      <textarea name="ioc_hashes" rows="2"
+        class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['ioc_hashes']); ?></textarea>
+
+      <label class="block mb-1 mt-3 text-ht_muted text-xs">Emails</label>
+      <textarea name="ioc_emails" rows="2"
+        class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['ioc_emails']); ?></textarea>
+
+      <label class="block mb-1 mt-3 text-ht_muted text-xs">Registry Paths</label>
+      <textarea name="ioc_registry_paths" rows="2"
+        class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 text-ht_text"><?= htmlspecialchars($apt['ioc_registry_paths']); ?></textarea>
+
+      <label class="block mb-1 mt-3 text-ht_muted text-xs">YARA</label>
+      <textarea name="ioc_yara" rows="4"
+        class="w-full bg-ht_bg border border-ht_border rounded-lg px-3 py-2 font-mono text-ht_text"><?= htmlspecialchars($apt['ioc_yara']); ?></textarea>
+    </div>
+
+    <div class="flex justify-end gap-2">
+      <a href="dashboard.php"
+        class="px-4 py-2 text-xs bg-ht_bg border border-ht_border rounded-lg text-ht_muted hover:bg-ht_border">Cancel</a>
+      <button type="submit"
+        class="px-4 py-2 text-xs bg-ht_blue text-white rounded-lg hover:bg-blue-700">Save</button>
+    </div>
+
+  </form>
+
 </section>
+
 <?php include __DIR__ . '/../partials/footer.php'; ?>

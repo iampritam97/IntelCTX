@@ -469,6 +469,7 @@ foreach (preg_split('/[,\n;]+/', ($apt['malware_families'] ?? '')) as $part) {
       </div>
 
       <!-- Related APTs -->
+       
       <div class="backdrop-blur-lg apt-card rounded-xl p-4">
         <h3 class="text-sm font-semibold text-ht_blue mb-2">Related APT Groups</h3>
         <?php if (!$related): ?>

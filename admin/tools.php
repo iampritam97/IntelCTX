@@ -27,52 +27,88 @@ if (isset($_GET['delete'])) {
 $rows = $pdo->query("SELECT * FROM threat_tools ORDER BY name")->fetchAll();
 include __DIR__ . '/../partials/header.php';
 ?>
-<section class="space-y-4 text-sm">
-    <div class="flex justify-between items-center">
-        <h1 class="text-lg font-semibold">Threat Tools</h1>
-        <a href="dashboard.php" class="border border-slate-300 rounded px-3 py-1 text-xs">Back</a>
-    </div>
+<section class="space-y-6 text-sm">
 
-    <form method="post" class="bg-white border border-slate-200 rounded p-3 grid md:grid-cols-3 gap-3 text-xs">
-        <div>
-            <label class="block mb-1">Name</label>
-            <input name="name" class="w-full border border-slate-300 rounded px-2 py-1.5">
-        </div>
-        <div class="md:col-span-2">
-            <label class="block mb-1">Description</label>
-            <input name="description" class="w-full border border-slate-300 rounded px-2 py-1.5">
-        </div>
-        <div class="md:col-span-3 flex justify-end">
-            <button class="border border-slate-400 rounded px-3 py-1.5">Save</button>
-        </div>
-    </form>
+  <!-- Header -->
+  <div class="flex justify-between items-center">
+    <h1 class="text-xl font-bold text-primary">Threat Tools Inventory</h1>
+    <a href="dashboard.php" class="border border-border rounded-lg px-3 py-1.5 text-xs hover:bg-white/10 transition">
+      ← Back
+    </a>
+  </div>
 
-    <div class="bg-white border border-slate-200 rounded p-3">
-        <table class="min-w-full text-xs">
-            <thead class="border-b border-slate-200 text-slate-500">
-                <tr>
-                    <th class="text-left py-1 pr-4">Name</th>
-                    <th class="text-left py-1 pr-4">Description</th>
-                    <th class="text-right py-1">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($rows as $r): ?>
-                    <tr class="border-b border-slate-100">
-                        <td class="py-1 pr-4"><?php echo htmlspecialchars($r['name']); ?></td>
-                        <td class="py-1 pr-4"><?php echo htmlspecialchars($r['description']); ?></td>
-                        <td class="py-1 text-right">
-                            <a href="?delete=<?php echo $r['id']; ?>"
-                               onclick="return confirm('Delete entry?');"
-                               class="underline text-red-600">Delete</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-                <?php if (!$rows): ?>
-                    <tr><td colspan="3" class="py-2 text-slate-500">No entries yet.</td></tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
+  <!-- New Tool Form -->
+  <form method="post"
+        class="bg-ht_card border border-border rounded-xl p-5 grid md:grid-cols-3 gap-4 shadow-lg">
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-400 mb-1">Tool Name</label>
+        <input name="name"
+               class="w-full bg-ht_input border border-ht_border rounded-lg px-3 py-2 text-sm focus:ring-1 ring-ht_blue"
+               placeholder="Example: Cobalt Strike, Metasploit">
+      </div>
+
+      <div class="md:col-span-2">
+        <label class="block text-xs font-semibold text-slate-400 mb-1">Description</label>
+        <input name="description"
+               class="w-full bg-ht_input border border-ht_border rounded-lg px-3 py-2 text-sm"
+               placeholder="Short description of the threat tool">
+      </div>
+
+      <div class="md:col-span-3 flex justify-end">
+        <button
+          class="bg-ht_blue text-white px-4 py-2 rounded-lg text-xs font-semibold hover:bg-ht_blue/80 transition">
+          + Save Tool
+        </button>
+      </div>
+  </form>
+
+  <!-- Tools List -->
+  <div class="bg-ht_card border border-border rounded-xl p-5 shadow-lg">
+
+    <h2 class="text-sm font-semibold text-ht_blue mb-3">Existing Tools</h2>
+
+    <table class="min-w-full text-xs">
+      <thead class="border-b border-ht_border text-slate-400">
+        <tr>
+          <th class="text-left py-2 pr-4">Name</th>
+          <th class="text-left py-2 pr-4">Description</th>
+          <th class="text-right py-2">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody class="divide-y divide-ht_border/60">
+        <?php foreach ($rows as $r): ?>
+          <tr class="hover:bg-white/5 transition">
+            <td class="py-2 pr-4 font-medium text-primary">
+              <?= htmlspecialchars($r['name']); ?>
+            </td>
+
+            <td class="py-2 pr-4 text-ht_muted">
+              <?= htmlspecialchars($r['description']); ?>
+            </td>
+
+            <td class="py-2 text-right">
+              <a href="?delete=<?= $r['id']; ?>"
+                 class="text-red-500 hover:text-red-400 underline"
+                 onclick="return confirm('Delete this tool?');">
+                 Delete
+              </a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+
+        <?php if (!$rows): ?>
+          <tr>
+            <td colspan="3" class="py-4 text-center text-ht_muted">
+              No threat tools added yet.
+            </td>
+          </tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
+  </div>
+
 </section>
+
 <?php include __DIR__ . '/../partials/footer.php'; ?>

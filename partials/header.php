@@ -54,10 +54,55 @@ tinymce.init({
   content_style: "body { font-size: 14px; }"
 });
 </script>
+    <!-- Primary SEO -->
+<meta name="title" content="IntelCTX — Cyber Threat Intelligence Platform">
+<meta name="description" content="Modern cyber threat intelligence for SOC, DFIR, Threat Hunters and Detection Engineers. Explore APT groups, malware, TTPs, and actionable IOCs.">
+
+<meta name="keywords" content="Threat Intelligence, APT Groups, Malware Analysis, IOC Database, MITRE ATT&CK, Cybersecurity, DFIR, Detection Engineering, IntelCTX">
+<meta name="author" content="IntelCTX Research Team">
+<meta name="robots" content="index, follow">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://intelctx.com/">
+
+<!-- Open Graph (Facebook / LinkedIn) -->
+<meta property="og:title" content="IntelCTX — Threat Intelligence for Modern Defenders">
+<meta property="og:description" content="Enterprise-grade intelligence: APT encyclopedia, malwarepedia, threat tools, IOCs, detection opportunities, and hunt builder.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://intelctx.com/">
+<meta property="og:image" content="https://intelctx.com/assets/og-intelctx.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IntelCTX — Cyber Threat Intelligence Platform">
+<meta name="twitter:description" content="Modern cyber threat intelligence designed for SOC, DFIR, and Incident Response teams.">
+<meta name="twitter:image" content="https://intelctx.com/assets/og-intelctx.png">
 
     <meta charset="UTF-8">
     <title>IntelCTX — Threat Intelligence for Modern Defenders</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "IntelCTX",
+  "url": "https://intelctx.com",
+  "description": "AI-assisted threat intelligence platform featuring APT encyclopedia, malwarepedia, threat tool registry and detection builder.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "IntelCTX",
+    "logo": "https://intelctx.com/assets/logo-dark.png"
+  },
+  "applicationCategory": "Cybersecurity",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
     <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -127,10 +172,12 @@ document.addEventListener('load', () => bindSuggest('aptSearch'));
     <nav class="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
 
       <!-- LOGO -->
+       <a href="https://intelctx.com" class="flex items-center gap-2 group">
       <div class="flex items-center gap-2">
         <span class="text-ht_blue font-mono text-xl">&gt;</span>
         <span class="logo-text text-xl tracking-wide text-white">IntelCTX</span>
       </div>
+</a>
 
       <!-- SEARCH BAR (Desktop) -->
       <div class="hidden md:flex w-1/2">
@@ -149,12 +196,58 @@ document.addEventListener('load', () => bindSuggest('aptSearch'));
       <div class="flex items-center gap-4">
 
         <!-- THEME TOGGLE -->
-        <button onclick="toggleTheme()" 
+        <!-- <button onclick="toggleTheme()" 
           class="p-2 rounded-lg bg-white/5 border border-white/10 
                  hover:bg-white/10 transition text-gray-300"
           title="Toggle Theme">
           🌓
-        </button>
+        </button> -->
+        <!-- HAMBURGER MENU -->
+<div class="relative">
+    <button id="hamburgerBtn" class="p-2 rounded-lg hover:bg-white/5 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+             class="w-6 h-6 text-slate-300" fill="none" viewBox="0 0 24 24"
+             stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+
+    <!-- DROPDOWN MENU -->
+    <div id="hamburgerMenu"
+         class="hidden absolute right-0 mt-2 w-48 rounded-xl border border-ht_border bg-ht_bg2 shadow-xl z-50">
+
+        <a href="/index.php" 
+           class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5 rounded-t-xl">
+           Home
+        </a>
+
+        <a href="/apt_list.php" 
+           class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">
+           APT Encyclopedia
+        </a>
+
+        <a href="/malware_list.php" 
+           class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">
+           Malware Families
+        </a>
+
+        <a href="/tools.php" 
+           class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">
+           Threat Tools
+        </a>
+
+        <a href="/governance.php" 
+           class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">
+           Governance
+        </a>
+
+        <a href="/faq.php" 
+           class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5 rounded-b-xl">
+           FAQs
+        </a>
+    </div>
+</div>
 
         <!-- SIGN IN -->
         <a href="admin/login.php"
@@ -166,6 +259,21 @@ document.addEventListener('load', () => bindSuggest('aptSearch'));
 
     </nav>
   </div>
+<script>
+const btn = document.getElementById("hamburgerBtn");
+const menu = document.getElementById("hamburgerMenu");
+
+btn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+});
+
+// Close dropdown if clicking elsewhere
+document.addEventListener("click", (e) => {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add("hidden");
+    }
+});
+</script>
 
 </header>
 

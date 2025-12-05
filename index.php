@@ -5,6 +5,8 @@ include __DIR__ . '/partials/tw_components.php';
 
 $pdo = get_db();
 
+
+
 // Search + Filters input
 $search = $_GET['q'] ?? '';
 $country = $_GET['country'] ?? '';
@@ -57,6 +59,8 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $groups = $stmt->fetchAll();
 ?>
+
+
 
 <style>
 @layer base {

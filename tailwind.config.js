@@ -1,5 +1,6 @@
 module.exports = {
-  content: ["./**/*.php"],
+  darkMode: 'class',
+  content: ["./**/*.php", "./**/*.html"],
   theme: { extend: {} },
-  plugins: []
+  plugins: [],
 }

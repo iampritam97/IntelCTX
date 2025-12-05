@@ -54,6 +54,14 @@
                 "Improved spacing, radii, and enterprise typography",
                 "Stability improvements & backend cleanup"
             ]],
+            ["IntelCTX 1.4 — Current Development", "2025-12-06", [
+                "Revamped Admin UI",
+                "Added hamburger menu in header with dropdown navigation.",
+                "Header branding with a clickable logo linking to home page.",
+                "Removed unused backend logic from earlier “related APT” implementation.",
+                "Improved footer section to full width",
+                "Removed toggle theme for now"
+            ]],
         ];
         ?>
 

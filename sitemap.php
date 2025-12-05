@@ -1,27 +1,8 @@
-<?php
-header("Content-Type: application/xml; charset=utf-8");
-require 'auth.php';
-$pdo = get_db();
-
-echo "<?xml version='1.0' encoding='UTF-8'?>";
-echo "<urlset>";
-
-$pages = ['index','terms','privacy','faq','changelog','hunt_builder','mitre_groups'];
-foreach ($pages as $p) {
-  echo "<url><loc>https://".$_SERVER['HTTP_HOST']."/$p</loc></url>";
-}
-
-$stmt = $pdo->query("SELECT id,name FROM apt_groups");
-foreach ($stmt as $a) {
-  $slug = strtolower(str_replace(' ','-',$a['name']));
-  echo "<url><loc>https://".$_SERVER['HTTP_HOST']."/apt/$slug</loc></url>";
-}
-
-$stmt = $pdo->query("SELECT name FROM malware_families");
-foreach ($stmt as $m) {
-  $slug = strtolower($m['name']);
-  echo "<url><loc>https://".$_SERVER['HTTP_HOST']."/malware/$slug</loc></url>";
-}
-
-echo "</urlset>";
-?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://intelctx.com/</loc></url>
+  <url><loc>https://intelctx.com/index.php</loc></url>
+  <url><loc>https://intelctx.com/malware.php</loc></url>
+  <url><loc>https://intelctx.com/tools.php</loc></url>
+  <url><loc>https://intelctx.com/timeline.php</loc></url>
+  <url><loc>https://intelctx.com/hunter.php</loc></url>
+</urlset>
