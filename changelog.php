@@ -30,14 +30,14 @@
 
         <?php 
         $logs = [
-            ["IntelCTX 1.0 — MVP Launch", "2025-11-30", [
+            ["IntelCTX 1.0.0 — MVP Launch", "2025-11-30", [
                 "Introduced APT Encyclopedia module with full profile structure",
                 "Added secure Admin Panel with CRUD permissions",
                 "IOC extraction and copy utilities added",
                 "Introduced Malwarepedia & Threat Tool Registry",
                 "Launched platform-wide audit logging engine"
             ]],
-            ["IntelCTX 1.1 — Research Expansion", "2025-12-01", [
+            ["IntelCTX 1.1.0 — Research Expansion", "2025-12-01", [
                 "Added MITRE ATT&CK group mapping & enrichments",
                 "New Malware Family detail view with capability matrices",
                 "TTP Explorer with interaction & MITRE detection alignment",
@@ -45,21 +45,21 @@
                 "Compliance & governance documentation pages added",
                 "Initial Changelog panel added"
             ]],
-            ["IntelCTX 1.2 — Enterprise UI Pass", "2025-12-04", [
+            ["IntelCTX 1.2.0", "2025-12-04", [
                 "Global dark theme upgrade with improved component contrast",
                 "Hunt Query Builder with multi-IOC parsing & MITRE guidance",
                 "APT Profile page redesigned with lifecycle graph",
                 "Added PDF export engine using DomPDF",
                 "Footer versioning, header redesign, and UX smoothing"
             ]],
-            ["IntelCTX 1.3 — Current Development", "2025-12-05", [
+            ["IntelCTX 1.3.0", "2025-12-05", [
                 "Added unified search experience across APT, Malware, and Tools",
                 "Glassmorphism UI applied to core analytic panels",
                 "Live threat ticker prepared for integration",
                 "Improved spacing, radii, and enterprise typography",
                 "Stability improvements & backend cleanup"
             ]],
-            ["IntelCTX 1.4 — Current Development", "2025-12-06", [
+            ["IntelCTX 1.4.0", "2025-12-06", [
                 "Revamped Admin UI",
                 "Added hamburger menu in header with dropdown navigation.",
                 "Header branding with a clickable logo linking to home page.",
@@ -67,14 +67,14 @@
                 "Improved footer section to full width",
                 "Removed toggle theme for now"
             ]],
-            ["IntelCTX 2.0 — Current Development", "2025-12-07", [
+            ["IntelCTX 2.0.0", "2025-12-07", [
         "Revamped Admin UI for improved usability and consistency.",
-        "Added hamburger menu in the header with a responsive dropdown navigation.",
-        "New header branding with clickable logo redirecting to homepage.",
-        "Removed legacy backend logic from the deprecated 'related APT' system.",
         "Introduced API Token Management prototype (initial beta).",
         "Refactored partials & layout containers to improve rendering stability.",
         "Enhanced node filtering logic in preparation for Knowledge Graph upgrades.(Experimental)"
+            ]],
+            ["IntelCTX 2.0.1 — Current Development", "2025-12-07", [
+        "Minor change log changes"
             ]],
 
         ];
