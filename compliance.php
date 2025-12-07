@@ -3,12 +3,17 @@
 <section class="max-w-5xl mx-auto px-6 py-12 space-y-10 text-primary">
 
     <!-- Page Header -->
-    <div class="space-y-1">
+    <!-- <div class="space-y-1">
         <h1 class="text-3xl font-extrabold tracking-tight text-ht_blue">
             Compliance & Acceptable Use
         </h1>
         <p class="text-xs text-ht_muted">Operational governance guidelines for IntelCTX users</p>
-    </div>
+    </div> -->
+
+            <div>
+    <h1 class="text-2xl font-bold text-white">Compliance & Acceptable Use</h1>
+    <p class="text-xs text-ht_muted mt-1">Operational governance guidelines for IntelCTX users</p>
+  </div>
 
     <!-- Compliance Card -->
     <div class="backdrop-blur-xl bg-ht_bg2/70 border border-ht_border/50 
@@ -28,7 +33,7 @@
 
         <!-- Section Block -->
         <div class="compliance-section">
-            <h2 class="compliance-title">Intended Users</h2>
+            <h2 class="compliance-title text-ht_blue">Intended Users</h2>
             <p class="compliance-text">
                 SOC Analysts, DFIR Responders, Threat Intelligence Teams, 
                 Detection Engineers, and Cyber Defense Practitioners.
@@ -36,7 +41,7 @@
         </div>
 
         <div class="compliance-section">
-            <h2 class="compliance-title">Acceptable Use</h2>
+            <h2 class="compliance-title text-ht_blue">Acceptable Use</h2>
             <p class="compliance-text">
                 IntelCTX may be used for defensive cyber operations including:
                 threat research, detection hypothesis development, incident preparedness, 
@@ -45,7 +50,7 @@
         </div>
 
         <div class="compliance-section">
-            <h2 class="compliance-title">Unacceptable Use</h2>
+            <h2 class="compliance-title text-ht_blue">Unacceptable Use</h2>
             <ul class="compliance-list">
                 <li>Offensive cyber operations or adversary emulation without authorization.</li>
                 <li>Exploit weaponization or malware development using platform intel.</li>
@@ -55,7 +60,7 @@
         </div>
 
         <div class="compliance-section">
-            <h2 class="compliance-title">Intel Confidence</h2>
+            <h2 class="compliance-title text-ht_blue">Intel Confidence</h2>
             <p class="compliance-text">
                 IntelCTX aggregates OSINT & CTI sources. Attribution, indicators, 
                 and TTP details must be validated against upstream vendor reports 
@@ -64,7 +69,7 @@
         </div>
 
         <div class="compliance-section">
-            <h2 class="compliance-title">Data Contribution Rules</h2>
+            <h2 class="compliance-title text-ht_blue">Data Contribution Rules</h2>
             <p class="compliance-text">
                 All submitted notes, comments, metadata updates, YARA patterns, or 
                 references must be factual, non-defamatory, and backed by 

@@ -19,8 +19,9 @@ include __DIR__ . '/../partials/header.php';
 
   <div class="w-full max-w-sm bg-ht_bg2 border border-ht_border rounded-xl shadow-lg p-8">
 
-    <h1 class="text-2xl font-extrabold text-ht_blue">Admin Portal Login</h1>
-    <p class="text-xs text-ht_muted mb-6">Restricted access — authorized users only.</p>
+    <h1 class="text-2xl font-bold text-white">Admin Portal Login</h1>
+    <p class="text-xs text-ht_muted mb-1">Restricted access — authorized users only.</p>
+
 
     <?php if ($error): ?>
       <div class="bg-red-600/20 border border-red-600 text-red-300 text-xs rounded-md p-2 mb-4">

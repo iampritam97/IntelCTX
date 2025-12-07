@@ -12,7 +12,7 @@ $tools = $stmt->fetchAll();
 <section class="max-w-6xl mx-auto px-6 py-12 space-y-10 text-sm">
 
     <!-- Page Header -->
-    <div class="flex items-center justify-between">
+    <!-- <div class="flex items-center justify-between">
         <div>
             <h1 class="text-3xl font-extrabold tracking-tight text-ht_blue">Threat Tools & Frameworks</h1>
             <p class="text-xs text-slate-500 dark:text-gray-400 font-mono">
@@ -20,8 +20,12 @@ $tools = $stmt->fetchAll();
             </p>
         </div>
         <span class="text-xs bg-ht_blue/20 text-ht_blue px-3 py-1 rounded-md font-semibold">MVP</span>
-    </div>
+    </div> -->
 
+<div>
+    <h1 class="text-2xl font-bold text-white">Threat Tools & Frameworks</h1>
+    <p class="text-xs text-ht_muted mt-1">Catalog of offensive & defensive tooling across APT ecosystems.</p>
+  </div>
     <!-- Floating Glass Search Bar -->
     <!-- <form method="GET"
         class="backdrop-blur-xl bg-white/5 dark:bg-white/5 border border-white/10 

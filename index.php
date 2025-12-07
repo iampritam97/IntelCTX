@@ -2,7 +2,7 @@
 require_once 'db.php';
 include 'partials/header.php';
 include __DIR__ . '/partials/tw_components.php';
-
+// include __DIR__ . '/partials/update.php';
 $pdo = get_db();
 
 
@@ -92,13 +92,19 @@ $groups = $stmt->fetchAll();
     APT groups, malware families, adversary tools & TTP tradecraft.  
     <br>Threat research built for SOC, DFIR, and CTI teams.
   </p>
-
+  <div class="mt-10 flex items-center justify-center gap-4">
   <!-- Explore Button -->
   <a href="#searchSection"
-     class="mt-10 inline-flex items-center space-x-2 bg-ht_blue px-6 py-3 rounded-lg text-white font-bold text-sm hover:bg-ht_blue2 transition">
-    ⚡ <span>Explore APT Encyclopedia</span>
+     class="inline-flex items-center space-x-2 bg-ht_blue px-6 py-3 rounded-lg text-white font-bold text-sm hover:bg-ht_blue2 transition">
+    ⚡ <span>APT Encyclopedia</span>
   </a>
 
+  <!-- Second Button -->
+  <a href="graph.php"
+     class="inline-flex items-center space-x-2 bg-ht_bg2 border border-ht_border px-6 py-3 rounded-lg text-ht_blue font-bold text-sm hover:bg-ht_blue/20 transition">
+    🌐 <span>View Threat Map</span>
+  </a>
+</div>
 </section>
 
 
@@ -160,6 +166,7 @@ $groups = $stmt->fetchAll();
 
 
 <!-- APT Grid Listing -->
+<!-- APT Grid Listing -->
 <section class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
 <?php foreach($groups as $g): ?>
@@ -181,6 +188,7 @@ $groups = $stmt->fetchAll();
 <?php endforeach; ?>
 
 </section>
+
 </main>
 
 <?php include 'partials/footer.php'; ?>

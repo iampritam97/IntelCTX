@@ -2,8 +2,13 @@
 
 <section class="max-w-4xl mx-auto px-6 py-12 space-y-8 text-sm text-primary">
 
-  <h1 class="text-3xl font-extrabold text-accent tracking-tight">Frequently Asked Questions</h1>
-  <p class="text-xs text-ht_muted">Common questions about IntelCTX, data usage, features, and platform policies.</p>
+  <!-- <h1 class="text-3xl font-extrabold text-accent tracking-tight">Frequently Asked Questions</h1>
+  <p class="text-xs text-ht_muted">Common questions about IntelCTX, data usage, features, and platform policies.</p> -->
+
+  <div>
+    <h1 class="text-2xl font-bold text-white">Frequently Asked Questions</h1>
+    <p class="text-xs text-ht_muted mt-1">Common questions about IntelCTX, data usage, features, and platform policies.</p>
+  </div>
 
   <div class="space-y-4">
 

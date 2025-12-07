@@ -1,4 +1,5 @@
 <?php require_once __DIR__ . '/../config.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <script>
@@ -217,35 +218,35 @@ document.addEventListener('load', () => bindSuggest('aptSearch'));
     <div id="hamburgerMenu"
          class="hidden absolute right-0 mt-2 w-48 rounded-xl border border-ht_border bg-ht_bg2 shadow-xl z-50">
 
-        <a href="/index.php" 
+        <!-- <a href="/index.php" 
            class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5 rounded-t-xl">
            Home
-        </a>
+        </a> -->
 
-        <a href="/apt_list.php" 
+        <a href="hunter.php" 
            class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">
-           APT Encyclopedia
+           Hunter
         </a>
 
-        <a href="/malware_list.php" 
+        <a href="malware.php" 
            class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">
            Malware Families
         </a>
 
-        <a href="/tools.php" 
+        <a href="tools.php" 
            class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">
            Threat Tools
         </a>
 
-        <a href="/governance.php" 
+        <a href="submit_intel.php" 
            class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">
-           Governance
+           Submit Intel
         </a>
 
-        <a href="/faq.php" 
+        <!-- <a href="faq.php" 
            class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5 rounded-b-xl">
            FAQs
-        </a>
+        </a> -->
     </div>
 </div>
 

@@ -4,7 +4,7 @@
 
   <!-- Title -->
   <div>
-    <h1 class="text-3xl font-extrabold text-white">Threat Hunt Query Builder</h1>
+    <h1 class="text-2xl font-bold text-white">Threat Hunt Query Builder</h1>
     <p class="text-xs text-ht_muted mt-1">Build multi-SIEM hunt queries using IOCs, patterns, MITRE techniques & behavioural signatures.</p>
   </div>
 

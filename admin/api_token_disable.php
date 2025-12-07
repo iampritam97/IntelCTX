@@ -1,0 +1,11 @@
+<?php
+require_once __DIR__ . '/../auth.php';
+require_login();
+$pdo = get_db();
+
+$id = (int)($_GET['id'] ?? 0);
+
+$pdo->prepare("UPDATE api_tokens SET active = 0 WHERE id=?")->execute([$id]);
+
+header("Location: api_tokens.php");
+exit;

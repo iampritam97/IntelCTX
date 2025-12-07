@@ -3,12 +3,20 @@
 <section class="max-w-5xl mx-auto px-6 py-14 space-y-12">
 
     <!-- Page Header -->
-    <div class="space-y-2">
+    <!-- <div class="space-y-2">
         <h1 class="text-3xl font-extrabold tracking-tight text-white">Terms of Service</h1>
         <p class="text-xs text-ht_muted">
             Last updated: <?= date('F Y'); ?>
         </p>
-    </div>
+    </div> -->
+
+
+                <div>
+    <h1 class="text-2xl font-bold text-white">Terms of Service</h1>
+    <p class="text-xs text-ht_muted">
+            Last updated: <?= date('F Y'); ?>
+        </p>
+  </div>
 
     <!-- TOC -->
     <div class="bg-ht_bg2/70 backdrop-blur-xl border border-ht_border rounded-xl shadow p-6">

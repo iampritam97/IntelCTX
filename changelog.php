@@ -15,10 +15,15 @@
 <section class="max-w-5xl mx-auto px-6 py-12 space-y-12">
 
     <!-- Header -->
-    <div>
+    <!-- <div>
         <h1 class="text-4xl font-extrabold tracking-tight text-ht_blue">Changelog</h1>
         <p class="text-xs text-ht_muted mt-1">Version releases, improvements & update history</p>
-    </div>
+    </div> -->
+
+     <div>
+    <h1 class="text-2xl font-bold text-white">Changelog</h1>
+    <p class="text-xs text-ht_muted mt-1">Version releases, improvements & update history</p>
+  </div>
 
     <!-- TIMELINE WRAPPER -->
     <div class="relative border-l border-ht_border/40 pl-8 space-y-12">
@@ -62,6 +67,16 @@
                 "Improved footer section to full width",
                 "Removed toggle theme for now"
             ]],
+            ["IntelCTX 2.0 — Current Development", "2025-12-07", [
+        "Revamped Admin UI for improved usability and consistency.",
+        "Added hamburger menu in the header with a responsive dropdown navigation.",
+        "New header branding with clickable logo redirecting to homepage.",
+        "Removed legacy backend logic from the deprecated 'related APT' system.",
+        "Introduced API Token Management prototype (initial beta).",
+        "Refactored partials & layout containers to improve rendering stability.",
+        "Enhanced node filtering logic in preparation for Knowledge Graph upgrades.(Experimental)"
+            ]],
+
         ];
         ?>
 

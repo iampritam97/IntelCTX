@@ -3,13 +3,17 @@
 <section class="max-w-4xl mx-auto px-6 py-12 space-y-10">
 
     <!-- Header -->
-    <div>
+    <!-- <div>
         <h1 class="text-3xl font-extrabold text-ht_blue tracking-tight">Submit Threat Intelligence</h1>
         <p class="text-xs text-ht_muted mt-1">
             Contribute structured intelligence used by defenders, researchers, and detection engineers.
         </p>
-    </div>
+    </div> -->
 
+    <div>
+    <h1 class="text-2xl font-bold text-white">Submit Threat Intelligence</h1>
+    <p class="text-xs text-ht_muted mt-1">Contribute structured intelligence used by defenders, researchers, and detection engineers.</p>
+  </div>
     <!-- FORM CONTAINER -->
     <form method="POST" action="admin/insert_submission.php"
         class="backdrop-blur-xl bg-ht_bg2/60 border border-ht_border rounded-2xl shadow-lg p-8 space-y-8">

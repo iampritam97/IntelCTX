@@ -3,12 +3,17 @@
 <section class="max-w-5xl mx-auto px-6 py-14 space-y-12 text-primary">
 
     <!-- HEADER -->
-    <div class="space-y-2">
+    <!-- <div class="space-y-2">
         <h1 class="text-4xl font-extrabold tracking-tight text-ht_blue">
             About IntelCTX
         </h1>
         <p class="text-xs text-ht_muted">Modern Cyber Threat Intelligence for Modern Defenders</p>
-    </div>
+    </div> -->
+
+        <div>
+    <h1 class="text-2xl font-bold text-white">About IntelCTX</h1>
+    <p class="text-xs text-ht_muted mt-1">Modern Cyber Threat Intelligence for Modern Defenders</p>
+  </div>
 
     <!-- INTRO CARD -->
     <div class="backdrop-blur-xl bg-ht_bg2/70 border border-ht_border/40 rounded-2xl shadow-lg p-8 space-y-6">
